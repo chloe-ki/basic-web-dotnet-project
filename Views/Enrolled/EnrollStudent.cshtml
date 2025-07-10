@@ -1,0 +1,44 @@
+﻿﻿@using Assignment3.ViewModels
+@model StudentEnrollmentViewModel
+
+@{
+    ViewData["Title"] = "Enroll Student";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Enroll Student</h1>
+</div>
+
+<form asp-action="EnrollStudent" method="post">
+    <div class="form-group">
+        <label asp-for="SelectedCourseID" class="control-label"></label>
+        <select asp-for="SelectedCourseID" class="form-control" asp-items="Model.Courses">
+            <option value="">Select Course</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SelectedStudentID" class="control-label"></label>
+        <select asp-for="SelectedStudentID" class="form-control" asp-items="Model.Students">
+            <option value="">Select Student</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Enroll</button>
+    </div>
+</form>
+
+<!-- success and error messages regarding enrollment of student -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
+}

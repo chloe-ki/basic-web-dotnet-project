@@ -1,0 +1,33 @@
+﻿﻿@using Assignment3.ViewModels;
+@model IEnumerable<Students>
+@{
+    ViewData["Title"] = "Create Courses";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Students</h1>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Mobile Phone</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.StudentID</td>
+                <td>@student.FirstName</td>
+                <td>@student.LastName</td>
+                <td>@student.Email</td>
+                <td>@student.MobilePhone</td>
+            </tr>
+        }
+    </tbody>
+</table>

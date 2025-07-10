@@ -1,0 +1,52 @@
+﻿﻿@using Assignment3.ViewModels;
+@model IEnumerable<CourseViewModel>
+@{
+    ViewData["Title"] = "View Courses";
+}
+
+<div class="text-center">
+    <h1 class="display-4">View Courses</h1>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().CourseID)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Title)</th>
+            <th>@Html.DisplayNameFor(model => model.First().CreditPoints)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Career)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Coordinator)</th>
+            <th>@Html.DisplayNameFor(model => model.First().EnrolledStudents)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => course.CourseID)</td>
+                <td>@Html.DisplayFor(model => course.Title)</td>
+                <td>@Html.DisplayFor(model => course.CreditPoints)</td>
+                <td>@Html.DisplayFor(model => course.Career)</td>
+                <td>@Html.DisplayFor(model => course.Coordinator)</td>
+                <td>
+
+                    <ul>
+                        @foreach (var student in course.EnrolledStudents)
+                        {
+                            <li>
+                                @Html.DisplayFor(model => student.FirstName) @Html.DisplayFor(model => student.LastName) - @Html.DisplayFor(model => student.Email) (@Html.DisplayFor(model => student.StudentID))
+                            </li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<!-- success message for new form creation -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
